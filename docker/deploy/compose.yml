@@ -1,0 +1,36 @@
+version: "3.7"
+name: ichat
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ichat
+      MYSQL_USER: ichat
+      MYSQL_PASSWORD: ichat
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+  redis:
+    image: redis:7
+    volumes:
+      - ./data/redis:/data
+  backend:
+    image: laishere/ichat-go:latest
+    depends_on:
+      - mysql
+      - redis
+    restart: unless-stopped
+    volumes:
+      - ./config.yml:/app/config.yml:ro
+      - ./data/backend:/app/data
+  app:
+    image: laishere/ichat-app:latest
+    depends_on:
+      - backend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    
+    
+

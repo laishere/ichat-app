@@ -1,0 +1,15 @@
+dev: false
+jwt:
+  secret: "secret"
+  issuer: "ichat"
+mysql:
+  host: "mysql"
+  port: 3306
+  user: "ichat"
+  password: "ichat"
+  dbname: "ichat"
+redis:
+  host: "redis"
+api-prefix: "/api"
+upload-dir: "./data"
+log-level: "info"

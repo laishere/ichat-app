@@ -1,0 +1,22 @@
+.logo {
+    fill: #071CB1;
+    stroke: #071CB1;
+    stroke-width: 1.5;
+    stroke-dasharray: 130;
+    animation: draw 5s forwards ease;
+}
+
+@keyframes draw {
+    0% {
+        stroke-dashoffset: 130;
+        fill-opacity: 0;
+    }
+    60% {
+        stroke-dashoffset: 0;
+        fill-opacity: 0;
+        stroke-width: 1.5;
+    }
+    100% {
+        stroke-width: 0;
+    }
+}
